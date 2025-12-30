@@ -1,1 +1,1 @@
-# samorzadsp2
+# samorzad
