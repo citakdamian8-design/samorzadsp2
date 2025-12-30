@@ -1,18 +1,16 @@
 import { db } from './firebase-config.js';
-import { collection, doc, setDoc, getDoc, getDocs, addDoc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+import { collection, doc, setDoc, getDoc, getDocs, addDoc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.6.1/firebase-firestore.js";
 
 const adminPassword = "SamorzadUczniowskiSP2haslo";
 
+// Nawigacja
 window.showTab = function(tabId){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   const el = document.getElementById(tabId);
   if(el) el.classList.add('active');
 }
 
-window.showAdmin = function(){
-  showTab('loginDiv');
-}
-
+// Panel admin
 window.login = async function(){
   const pass = document.getElementById("password").value;
   if(pass===adminPassword){
@@ -24,6 +22,7 @@ window.login = async function(){
   }
 }
 
+// Załaduj dane z Firestore
 async function loadAllData(){
   const tabs = ["homeText","skladText","mamtalentText","pomyslyText","kontaktText"];
   for(const tab of tabs){
@@ -38,6 +37,7 @@ async function loadAllData(){
   renderSubmissions();
 }
 
+// Edycja zakładek
 window.saveTabContent = async function(){
   const selected = document.getElementById("tabSelector").value;
   const content = document.getElementById("tabEditor").value;

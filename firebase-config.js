@@ -1,15 +1,17 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+// Importy
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.1/firebase-app.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.6.1/firebase-firestore.js";
 
+// Konfiguracja Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAHHRGXZF6HcvoKUE4KKqedLl2tAl5zRro",
   authDomain: "samorzadsp2-ca51a.firebaseapp.com",
   projectId: "samorzadsp2-ca51a",
-  storageBucket: "samorzadsp2-ca51a.firebasestorage.app",
+  storageBucket: "samorzadsp2-ca51a.appspot.com",
   messagingSenderId: "928474288056",
-  appId: "1:928474288056:web:c4b8d54c844ac9d607c94d",
-  measurementId: "G-Z2HEKBR50V"
+  appId: "1:928474288056:web:c4b8d54c844ac9d607c94d"
 };
 
+// Inicjalizacja Firebase
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);

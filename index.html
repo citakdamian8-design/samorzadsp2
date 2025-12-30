@@ -69,7 +69,6 @@ h2, h3 {margin-top:0;}
     <a href="#" onclick="showSection('panel')">Panel administratora</a>
 </nav>
 
-<!-- Strona główna -->
 <section id="home">
     <div style="position:relative; text-align:center; padding:100px 20px; background:#1abc9c; color:white;">
         <h1 style="font-size:3em; margin:0; animation:fadeInDown 1s forwards;">Samorząd Uczniowski SP2 Muszyna</h1>
@@ -87,7 +86,6 @@ h2, h3 {margin-top:0;}
     </div>
 </section>
 
-<!-- Skład samorządu -->
 <section id="sklad" class="hidden">
     <h2>Skład Samorządu</h2>
     <div id="skladText">
@@ -97,19 +95,16 @@ h2, h3 {margin-top:0;}
     </div>
 </section>
 
-<!-- Aktualności -->
 <section id="aktualnosci" class="hidden">
     <h2>Aktualności</h2>
     <div id="newsList"></div>
 </section>
 
-<!-- Wydarzenia -->
 <section id="wydarzenia" class="hidden">
     <h2>Wydarzenia</h2>
     <div id="eventList"></div>
 </section>
 
-<!-- Mam Talent -->
 <section id="mamtalent" class="hidden">
     <h2>Mam Talent – szkolna edycja 2026</h2>
     <p id="mamtalentText">Uczniowie mają okazję zaprezentować swoje umiejętności w różnych kategoriach artystycznych. Jury wybierze zwycięzców podczas finału.</p>
@@ -123,7 +118,6 @@ h2, h3 {margin-top:0;}
     </form>
 </section>
 
-<!-- Pomysły dla Samorządu -->
 <section id="pomysly" class="hidden">
     <h2>Pomysły dla Samorządu</h2>
     <p id="pomyslyText">Masz pomysł, który może ułatwić życie w szkole lub uczynić ją ciekawszą? Wpisz go poniżej, a Samorząd Uczniowski rozważy każdą propozycję.</p>
@@ -143,13 +137,11 @@ h2, h3 {margin-top:0;}
     </form>
 </section>
 
-<!-- Kontakt -->
 <section id="kontakt" class="hidden">
     <h2>Kontakt</h2>
     <p id="kontaktText">Mail: <a href="mailto:samorzadszkolnysp2muszyna@gmail.com">samorzadszkolnysp2muszyna@gmail.com</a></p>
 </section>
 
-<!-- Panel administratora -->
 <section id="panel" class="hidden">
     <h2>Panel administratora</h2>
     <div class="login-container" id="loginDiv">
@@ -159,8 +151,6 @@ h2, h3 {margin-top:0;}
     </div>
 
     <div id="adminPanel" class="hidden">
-
-        <!-- Edycja treści zakładek -->
         <h3>Edycja treści zakładek</h3>
         <label>Wybierz zakładkę:</label>
         <select id="tabSelector" onchange="loadTabContent()">
@@ -173,7 +163,6 @@ h2, h3 {margin-top:0;}
         <textarea id="tabEditor" rows="6" style="width:100%; margin-top:10px;"></textarea>
         <button onclick="saveTabContent()">Zapisz zmiany</button>
 
-        <!-- Mam Talent -->
         <h3>Lista zgłoszeń do Mam Talent</h3>
         <table id="submissionsTable">
             <tr>
@@ -187,20 +176,17 @@ h2, h3 {margin-top:0;}
             </tr>
         </table>
 
-        <!-- Aktualności -->
         <h3>Dodaj aktualność</h3>
         <input type="text" id="newsTitle" placeholder="Tytuł"><br>
         <textarea id="newsContent" rows="3" placeholder="Treść"></textarea><br>
         <button onclick="addNews()">Dodaj aktualność</button>
 
-        <!-- Wydarzenia -->
         <h3>Dodaj wydarzenie</h3>
         <input type="text" id="eventTitle" placeholder="Tytuł"><br>
         <input type="date" id="eventDate"><br>
         <textarea id="eventContent" rows="3" placeholder="Opis wydarzenia"></textarea><br>
         <button onclick="addEvent()">Dodaj wydarzenie</button>
 
-        <!-- Pomysły -->
         <h3>Pomysły od uczniów</h3>
         <table id="ideasTable">
             <tr>
@@ -209,186 +195,9 @@ h2, h3 {margin-top:0;}
                 <th>Opis pomysłu</th>
             </tr>
         </table>
-
     </div>
 </section>
 
-<script>
-// Tablice globalne
-let submissions = [];
-let news = [
-    {title: "Rozpoczęcie zapisów do Mam Talent", content: "Od 16.02.2025 rozpoczynają się zapisy do szkolnej edycji programu Mam Talent. Zachęcamy wszystkich uczniów do zgłaszania swoich talentów!"}
-];
-let events = [];
-let ideas = [];
-const adminPassword = "SamorzadUczniowskiSP2haslo";
-
-// Nawigacja
-function showSection(id) {
-    document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden'));
-    document.getElementById(id).classList.remove('hidden');
-}
-
-// Mam Talent
-function submitForm() {
-    const startDate = new Date("2026-02-16"); // data rozpoczęcia zapisów
-    const today = new Date();
-    
-    if(today < startDate) {
-        alert("Zapisy do szkolnej edycji Mam Talent rozpoczną się 16.02.2026.");
-        return; // blokuje wysyłkę formularza
-    }
-
-    const imie = document.getElementById("imie").value;
-    const klasa = document.getElementById("klasa").value;
-    const kategoria = document.getElementById("kategoria").value;
-    const opis = document.getElementById("opis").value;
-    const link = document.getElementById("link").value;
-
-    submissions.push({imie, klasa, kategoria, opis, link, status: "oczekuje"});
-    alert("Zgłoszenie wysłane!");
-    document.getElementById("form").reset();
-}
-
-// Pomysły
-function submitIdea() {
-    const name = document.getElementById("ideaName").value;
-    const category = document.getElementById("ideaCategory").value;
-    const description = document.getElementById("ideaDescription").value;
-
-    if(name && description) {
-        ideas.push({name, category, description});
-        alert("Twój pomysł został wysłany!");
-        document.getElementById("ideaForm").reset();
-        renderIdeas();
-    }
-}
-
-// Panel administratora
-function login() {
-    const pass = document.getElementById("password").value;
-    if(pass === adminPassword) {
-        document.getElementById("loginDiv").classList.add("hidden");
-        document.getElementById("adminPanel").classList.remove("hidden");
-        renderSubmissions();
-        renderNews();
-        renderEvents();
-        renderIdeas();
-        loadTabContent();
-    } else {
-        document.getElementById("loginMsg").innerText = "Nieprawidłowe hasło!";
-    }
-}
-
-// Mam Talent
-function renderSubmissions() {
-    const table = document.getElementById("submissionsTable");
-    table.innerHTML = `<tr>
-        <th>Imię i nazwisko</th>
-        <th>Klasa</th>
-        <th>Kategoria</th>
-        <th>Opis występu</th>
-        <th>Link</th>
-        <th>Status</th>
-        <th>Akcja</th>
-    </tr>`;
-    submissions.forEach((s, index) => {
-        const row = table.insertRow();
-        row.insertCell(0).innerText = s.imie;
-        row.insertCell(1).innerText = s.klasa;
-        row.insertCell(2).innerText = s.kategoria;
-        row.insertCell(3).innerText = s.opis;
-        row.insertCell(4).innerHTML = s.link ? `<a href="${s.link}" target="_blank">link</a>` : "";
-        row.insertCell(5).innerText = s.status;
-        row.insertCell(6).innerHTML = `<button onclick="changeStatus(${index}, 'zaakceptowany')">Zaakceptuj</button>
-                                       <button onclick="changeStatus(${index}, 'odrzucony')">Odrzuć</button>`;
-    });
-}
-
-function changeStatus(index, status) {
-    submissions[index].status = status;
-    renderSubmissions();
-}
-
-// Aktualności
-function addNews() {
-    const title = document.getElementById("newsTitle").value;
-    const content = document.getElementById("newsContent").value;
-    if(title && content) {
-        news.push({title, content});
-        renderNews();
-        document.getElementById("newsTitle").value = "";
-        document.getElementById("newsContent").value = "";
-    }
-}
-
-function renderNews() {
-    const newsList = document.getElementById("newsList");
-    newsList.innerHTML = "";
-    news.forEach(n => {
-        const div = document.createElement("div");
-        div.className = "card fade-in";
-        div.innerHTML = `<h4>${n.title}</h4><p>${n.content}</p>`;
-        newsList.appendChild(div);
-    });
-}
-
-// Wydarzenia
-function addEvent() {
-    const title = document.getElementById("eventTitle").value;
-    const date = document.getElementById("eventDate").value;
-    const content = document.getElementById("eventContent").value;
-    if(title && date && content) {
-        events.push({title, date, content});
-        renderEvents();
-        document.getElementById("eventTitle").value = "";
-        document.getElementById("eventDate").value = "";
-        document.getElementById("eventContent").value = "";
-    }
-}
-
-function renderEvents() {
-    const eventList = document.getElementById("eventList");
-    eventList.innerHTML = "";
-    events.forEach(e => {
-        const div = document.createElement("div");
-        div.className = "card fade-in";
-        div.innerHTML = `<h4>${e.title} - ${e.date}</h4><p>${e.content}</p>`;
-        eventList.appendChild(div);
-    });
-}
-
-// Pomysły
-function renderIdeas() {
-    const table = document.getElementById("ideasTable");
-    if(table) {
-        table.innerHTML = `<tr>
-            <th>Imię i nazwisko</th>
-            <th>Kategoria</th>
-            <th>Opis pomysłu</th>
-        </tr>`;
-        ideas.forEach(i => {
-            const row = table.insertRow();
-            row.insertCell(0).innerText = i.name;
-            row.insertCell(1).innerText = i.category;
-            row.insertCell(2).innerText = i.description;
-        });
-    }
-}
-
-// Edycja zakładek
-function loadTabContent() {
-    const selected = document.getElementById("tabSelector").value;
-    document.getElementById("tabEditor").value = document.getElementById(selected).innerHTML;
-}
-
-function saveTabContent() {
-    const selected = document.getElementById("tabSelector").value;
-    const newContent = document.getElementById("tabEditor").value;
-    document.getElementById(selected).innerHTML = newContent;
-    alert("Treść zakładki została zaktualizowana!");
-}
-</script>
-
+<script type="module" src="script.js"></script>
 </body>
 </html>
