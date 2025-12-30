@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samorząd Uczniowski SP2 Muszyna</title>
+<style>
+body { font-family: Arial, sans-serif; margin:0; background:#f0f0f5; color:#333;}
+header {background:#2c3e50; color:white; padding:20px; text-align:center;}
+nav {display:flex; justify-content:center; background:#34495e; flex-wrap:wrap;}
+nav a {color:white; padding:14px 20px; text-decoration:none;}
+nav a:hover {background:#1abc9c;}
+section {padding:20px; max-width:900px; margin:auto;}
+.hidden {display:none;}
+table {width:100%; border-collapse:collapse; margin-top:20px;}
+table, th, td {border:1px solid #ccc;}
+th, td {padding:10px; text-align:left;}
+input, textarea, select {width:100%; padding:8px; margin:5px 0 15px 0; box-sizing:border-box;}
+button {padding:10px 20px; background-color:#1abc9c; color:white; border:none; cursor:pointer;}
+button:hover {background-color:#16a085;}
+.card {background:white; padding:15px; margin:10px 0; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+h2, h3 {margin-top:0;}
+.login-container {max-width:300px; margin:20px auto;}
+.fade-in {opacity:0; transform:translateY(20px); animation:fadeIn 1s forwards;}
+@keyframes fadeIn {to {opacity:1; transform:translateY(0);}}
+@keyframes fadeInDown {0% {opacity:0; transform:translateY(-30px);} 100% {opacity:1; transform:translateY(0);}}
+@keyframes fadeInUp {0% {opacity:0; transform:translateY(30px);} 100% {opacity:1; transform:translateY(0);}}
+.card-home {
+    background:white;
+    color:#2c3e50;
+    width:180px;
+    height:120px;
+    margin:15px;
+    border-radius:12px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+    font-size:1.1em;
+    cursor:pointer;
+    transition:all 0.3s ease;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+.card-home:hover {
+    transform:translateY(-5px);
+    box-shadow:0 8px 15px rgba(0,0,0,0.2);
+    background:#16a085;
+    color:white;
+}
+@media(max-width:600px){
+    .card-home {width:45%; height:100px; font-size:1em;}
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Samorząd Uczniowski SP2 Muszyna</h1>
+</header>
+
+<nav>
+    <a href="#" onclick="showSection('home')">Strona główna</a>
+    <a href="#" onclick="showSection('sklad')">Skład samorządu</a>
+    <a href="#" onclick="showSection('aktualnosci')">Aktualności</a>
+    <a href="#" onclick="showSection('wydarzenia')">Wydarzenia</a>
+    <a href="#" onclick="showSection('mamtalent')">Mam Talent</a>
+    <a href="#" onclick="showSection('pomysly')">Pomysły dla Samorządu</a>
+    <a href="#" onclick="showSection('kontakt')">Kontakt</a>
+    <a href="#" onclick="showSection('panel')">Panel administratora</a>
+</nav>
+
+<!-- Strona główna -->
+<section id="home">
+    <div style="position:relative; text-align:center; padding:100px 20px; background:#1abc9c; color:white;">
+        <h1 style="font-size:3em; margin:0; animation:fadeInDown 1s forwards;">Samorząd Uczniowski SP2 Muszyna</h1>
+        <p id="homeText" style="font-size:1.2em; margin-top:20px; animation:fadeInUp 1.5s forwards;">
+            Tworzymy szkołę razem – inicjatywy, wydarzenia i projekty dla uczniów.
+        </p>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; margin-top:40px;">
+        <div class="card-home" onclick="showSection('sklad')">Skład Samorządu</div>
+        <div class="card-home" onclick="showSection('aktualnosci')">Aktualności</div>
+        <div class="card-home" onclick="showSection('wydarzenia')">Wydarzenia</div>
+        <div class="card-home" onclick="showSection('mamtalent')">Mam Talent</div>
+        <div class="card-home" onclick="showSection('pomysly')">Pomysły dla Samorządu</div>
+        <div class="card-home" onclick="showSection('kontakt')">Kontakt</div>
+    </div>
+</section>
+
+<!-- Skład samorządu -->
+<section id="sklad" class="hidden">
+    <h2>Skład Samorządu</h2>
+    <div id="skladText">
+        <ul id="czlonkowie" class="fade-in">
+            <li>Samorząd uczniowski</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Aktualności -->
+<section id="aktualnosci" class="hidden">
+    <h2>Aktualności</h2>
+    <div id="newsList"></div>
+</section>
+
+<!-- Wydarzenia -->
+<section id="wydarzenia" class="hidden">
+    <h2>Wydarzenia</h2>
+    <div id="eventList"></div>
+</section>
+
+<!-- Mam Talent -->
+<section id="mamtalent" class="hidden">
+    <h2>Mam Talent – szkolna edycja 2026</h2>
+    <p id="mamtalentText">Uczniowie mają okazję zaprezentować swoje umiejętności w różnych kategoriach artystycznych. Jury wybierze zwycięzców podczas finału.</p>
+    <form id="form">
+        <label>Imię i nazwisko:</label><input type="text" id="imie" required>
+        <label>Klasa:</label><input type="text" id="klasa" required>
+        <label>Kategoria talentu:</label><input type="text" id="kategoria" required>
+        <label>Opis występu:</label><textarea id="opis" rows="4" required></textarea>
+        <label>Link do nagrania (opcjonalnie):</label><input type="url" id="link">
+        <button type="button" onclick="submitForm()">Wyślij zgłoszenie</button>
+    </form>
+</section>
+
+<!-- Pomysły dla Samorządu -->
+<section id="pomysly" class="hidden">
+    <h2>Pomysły dla Samorządu</h2>
+    <p id="pomyslyText">Masz pomysł, który może ułatwić życie w szkole lub uczynić ją ciekawszą? Wpisz go poniżej, a Samorząd Uczniowski rozważy każdą propozycję.</p>
+    <form id="ideaForm">
+        <label>Twoje imię i nazwisko:</label>
+        <input type="text" id="ideaName" required>
+        <label>Kategoria pomysłu:</label>
+        <select id="ideaCategory">
+            <option value="Wydarzenie">Wydarzenie</option>
+            <option value="Inicjatywa społeczna">Inicjatywa społeczna</option>
+            <option value="Usprawnienie szkolne">Usprawnienie szkolne</option>
+            <option value="Inne">Inne</option>
+        </select>
+        <label>Opis pomysłu:</label>
+        <textarea id="ideaDescription" rows="4" required></textarea>
+        <button type="button" onclick="submitIdea()">Wyślij pomysł</button>
+    </form>
+</section>
+
+<!-- Kontakt -->
+<section id="kontakt" class="hidden">
+    <h2>Kontakt</h2>
+    <p id="kontaktText">Mail: <a href="mailto:samorzadszkolnysp2muszyna@gmail.com">samorzadszkolnysp2muszyna@gmail.com</a></p>
+</section>
+
+<!-- Panel administratora -->
+<section id="panel" class="hidden">
+    <h2>Panel administratora</h2>
+    <div class="login-container" id="loginDiv">
+        <label>Hasło:</label><input type="password" id="password">
+        <button onclick="login()">Zaloguj</button>
+        <p id="loginMsg" style="color:red;"></p>
+    </div>
+
+    <div id="adminPanel" class="hidden">
+
+        <!-- Edycja treści zakładek -->
+        <h3>Edycja treści zakładek</h3>
+        <label>Wybierz zakładkę:</label>
+        <select id="tabSelector" onchange="loadTabContent()">
+            <option value="homeText">Strona główna</option>
+            <option value="skladText">Skład samorządu</option>
+            <option value="mamtalentText">Mam Talent</option>
+            <option value="pomyslyText">Pomysły</option>
+            <option value="kontaktText">Kontakt</option>
+        </select>
+        <textarea id="tabEditor" rows="6" style="width:100%; margin-top:10px;"></textarea>
+        <button onclick="saveTabContent()">Zapisz zmiany</button>
+
+        <!-- Mam Talent -->
+        <h3>Lista zgłoszeń do Mam Talent</h3>
+        <table id="submissionsTable">
+            <tr>
+                <th>Imię i nazwisko</th>
+                <th>Klasa</th>
+                <th>Kategoria</th>
+                <th>Opis występu</th>
+                <th>Link</th>
+                <th>Status</th>
+                <th>Akcja</th>
+            </tr>
+        </table>
+
+        <!-- Aktualności -->
+        <h3>Dodaj aktualność</h3>
+        <input type="text" id="newsTitle" placeholder="Tytuł"><br>
+        <textarea id="newsContent" rows="3" placeholder="Treść"></textarea><br>
+        <button onclick="addNews()">Dodaj aktualność</button>
+
+        <!-- Wydarzenia -->
+        <h3>Dodaj wydarzenie</h3>
+        <input type="text" id="eventTitle" placeholder="Tytuł"><br>
+        <input type="date" id="eventDate"><br>
+        <textarea id="eventContent" rows="3" placeholder="Opis wydarzenia"></textarea><br>
+        <button onclick="addEvent()">Dodaj wydarzenie</button>
+
+        <!-- Pomysły -->
+        <h3>Pomysły od uczniów</h3>
+        <table id="ideasTable">
+            <tr>
+                <th>Imię i nazwisko</th>
+                <th>Kategoria</th>
+                <th>Opis pomysłu</th>
+            </tr>
+        </table>
+
+    </div>
+</section>
+
+<script>
+// Tablice globalne
+let submissions = [];
+let news = [
+    {title: "Rozpoczęcie zapisów do Mam Talent", content: "Od 16.02.2025 rozpoczynają się zapisy do szkolnej edycji programu Mam Talent. Zachęcamy wszystkich uczniów do zgłaszania swoich talentów!"}
+];
+let events = [];
+let ideas = [];
+const adminPassword = "SamorzadUczniowskiSP2haslo";
+
+// Nawigacja
+function showSection(id) {
+    document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+}
+
+// Mam Talent
+function submitForm() {
+    const startDate = new Date("2026-02-16"); // data rozpoczęcia zapisów
+    const today = new Date();
+    
+    if(today < startDate) {
+        alert("Zapisy do szkolnej edycji Mam Talent rozpoczną się 16.02.2026.");
+        return; // blokuje wysyłkę formularza
+    }
+
+    const imie = document.getElementById("imie").value;
+    const klasa = document.getElementById("klasa").value;
+    const kategoria = document.getElementById("kategoria").value;
+    const opis = document.getElementById("opis").value;
+    const link = document.getElementById("link").value;
+
+    submissions.push({imie, klasa, kategoria, opis, link, status: "oczekuje"});
+    alert("Zgłoszenie wysłane!");
+    document.getElementById("form").reset();
+}
+
+// Pomysły
+function submitIdea() {
+    const name = document.getElementById("ideaName").value;
+    const category = document.getElementById("ideaCategory").value;
+    const description = document.getElementById("ideaDescription").value;
+
+    if(name && description) {
+        ideas.push({name, category, description});
+        alert("Twój pomysł został wysłany!");
+        document.getElementById("ideaForm").reset();
+        renderIdeas();
+    }
+}
+
+// Panel administratora
+function login() {
+    const pass = document.getElementById("password").value;
+    if(pass === adminPassword) {
+        document.getElementById("loginDiv").classList.add("hidden");
+        document.getElementById("adminPanel").classList.remove("hidden");
+        renderSubmissions();
+        renderNews();
+        renderEvents();
+        renderIdeas();
+        loadTabContent();
+    } else {
+        document.getElementById("loginMsg").innerText = "Nieprawidłowe hasło!";
+    }
+}
+
+// Mam Talent
+function renderSubmissions() {
+    const table = document.getElementById("submissionsTable");
+    table.innerHTML = `<tr>
+        <th>Imię i nazwisko</th>
+        <th>Klasa</th>
+        <th>Kategoria</th>
+        <th>Opis występu</th>
+        <th>Link</th>
+        <th>Status</th>
+        <th>Akcja</th>
+    </tr>`;
+    submissions.forEach((s, index) => {
+        const row = table.insertRow();
+        row.insertCell(0).innerText = s.imie;
+        row.insertCell(1).innerText = s.klasa;
+        row.insertCell(2).innerText = s.kategoria;
+        row.insertCell(3).innerText = s.opis;
+        row.insertCell(4).innerHTML = s.link ? `<a href="${s.link}" target="_blank">link</a>` : "";
+        row.insertCell(5).innerText = s.status;
+        row.insertCell(6).innerHTML = `<button onclick="changeStatus(${index}, 'zaakceptowany')">Zaakceptuj</button>
+                                       <button onclick="changeStatus(${index}, 'odrzucony')">Odrzuć</button>`;
+    });
+}
+
+function changeStatus(index, status) {
+    submissions[index].status = status;
+    renderSubmissions();
+}
+
+// Aktualności
+function addNews() {
+    const title = document.getElementById("newsTitle").value;
+    const content = document.getElementById("newsContent").value;
+    if(title && content) {
+        news.push({title, content});
+        renderNews();
+        document.getElementById("newsTitle").value = "";
+        document.getElementById("newsContent").value = "";
+    }
+}
+
+function renderNews() {
+    const newsList = document.getElementById("newsList");
+    newsList.innerHTML = "";
+    news.forEach(n => {
+        const div = document.createElement("div");
+        div.className = "card fade-in";
+        div.innerHTML = `<h4>${n.title}</h4><p>${n.content}</p>`;
+        newsList.appendChild(div);
+    });
+}
+
+// Wydarzenia
+function addEvent() {
+    const title = document.getElementById("eventTitle").value;
+    const date = document.getElementById("eventDate").value;
+    const content = document.getElementById("eventContent").value;
+    if(title && date && content) {
+        events.push({title, date, content});
+        renderEvents();
+        document.getElementById("eventTitle").value = "";
+        document.getElementById("eventDate").value = "";
+        document.getElementById("eventContent").value = "";
+    }
+}
+
+function renderEvents() {
+    const eventList = document.getElementById("eventList");
+    eventList.innerHTML = "";
+    events.forEach(e => {
+        const div = document.createElement("div");
+        div.className = "card fade-in";
+        div.innerHTML = `<h4>${e.title} - ${e.date}</h4><p>${e.content}</p>`;
+        eventList.appendChild(div);
+    });
+}
+
+// Pomysły
+function renderIdeas() {
+    const table = document.getElementById("ideasTable");
+    if(table) {
+        table.innerHTML = `<tr>
+            <th>Imię i nazwisko</th>
+            <th>Kategoria</th>
+            <th>Opis pomysłu</th>
+        </tr>`;
+        ideas.forEach(i => {
+            const row = table.insertRow();
+            row.insertCell(0).innerText = i.name;
+            row.insertCell(1).innerText = i.category;
+            row.insertCell(2).innerText = i.description;
+        });
+    }
+}
+
+// Edycja zakładek
+function loadTabContent() {
+    const selected = document.getElementById("tabSelector").value;
+    document.getElementById("tabEditor").value = document.getElementById(selected).innerHTML;
+}
+
+function saveTabContent() {
+    const selected = document.getElementById("tabSelector").value;
+    const newContent = document.getElementById("tabEditor").value;
+    document.getElementById(selected).innerHTML = newContent;
+    alert("Treść zakładki została zaktualizowana!");
+}
+</script>
+
+</body>
+</html>
