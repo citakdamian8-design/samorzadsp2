@@ -22,9 +22,9 @@ button:hover {background-color:#16a085;}
 h2, h3 {margin-top:0;}
 .login-container {max-width:300px; margin:20px auto;}
 .fade-in {opacity:0; transform:translateY(20px); animation:fadeIn 1s forwards;}
-@keyframes fadeIn {to {opacity:1; transform:translateY(0);}}
-@keyframes fadeInDown {0% {opacity:0; transform:translateY(-30px);} 100% {opacity:1; transform:translateY(0);}}
-@keyframes fadeInUp {0% {opacity:0; transform:translateY(30px);} 100% {opacity:1; transform:translateY(0);}}
+@keyframes fadeIn {to {opacity:1; transform:translateY(0);} }
+@keyframes fadeInDown {0% {opacity:0; transform:translateY(-30px);} 100% {opacity:1; transform:translateY(0);} }
+@keyframes fadeInUp {0% {opacity:0; transform:translateY(30px);} 100% {opacity:1; transform:translateY(0);} }
 .card-home {
     background:white;
     color:#2c3e50;
@@ -69,7 +69,6 @@ h2, h3 {margin-top:0;}
     <a href="#" onclick="showSection('panel')">Panel administratora</a>
 </nav>
 
-<!-- Strona główna -->
 <section id="home">
     <div style="position:relative; text-align:center; padding:100px 20px; background:#1abc9c; color:white;">
         <h1 style="font-size:3em; margin:0; animation:fadeInDown 1s forwards;">Samorząd Uczniowski SP2 Muszyna</h1>
@@ -87,207 +86,252 @@ h2, h3 {margin-top:0;}
     </div>
 </section>
 
-<!-- Skład samorządu -->
 <section id="sklad" class="hidden">
     <h2>Skład Samorządu</h2>
     <div id="skladText"><ul id="czlonkowie" class="fade-in"><li>Samorząd uczniowski</li></ul></div>
 </section>
 
-<!-- Aktualności -->
 <section id="aktualnosci" class="hidden"><h2>Aktualności</h2><div id="newsList"></div></section>
-
-<!-- Wydarzenia -->
 <section id="wydarzenia" class="hidden"><h2>Wydarzenia</h2><div id="eventList"></div></section>
 
-<!-- Mam Talent -->
 <section id="mamtalent" class="hidden">
-<h2>Mam Talent – szkolna edycja 2026</h2>
-<p id="mamtalentText">Uczniowie mają okazję zaprezentować swoje umiejętności w różnych kategoriach artystycznych. Jury wybierze zwycięzców podczas finału.</p>
-<form id="form">
-<label>Imię i nazwisko:</label><input type="text" id="imie" required>
-<label>Klasa:</label><input type="text" id="klasa" required>
-<label>Kategoria talentu:</label><input type="text" id="kategoria" required>
-<label>Opis występu:</label><textarea id="opis" rows="4" required></textarea>
-<label>Link do nagrania (opcjonalnie):</label><input type="url" id="link">
-<button type="button" onclick="submitForm()">Wyślij zgłoszenie</button>
-</form>
+    <h2>Mam Talent – szkolna edycja 2026</h2>
+    <p id="mamtalentText">Uczniowie mają okazję zaprezentować swoje umiejętności w różnych kategoriach artystycznych. Jury wybierze zwycięzców podczas finału.</p>
+    <form id="form">
+        <label>Imię i nazwisko:</label><input type="text" id="imie" required>
+        <label>Klasa:</label><input type="text" id="klasa" required>
+        <label>Kategoria talentu:</label><input type="text" id="kategoria" required>
+        <label>Opis występu:</label><textarea id="opis" rows="4" required></textarea>
+        <label>Link do nagrania (opcjonalnie):</label><input type="url" id="link">
+        <button type="button" onclick="submitForm()">Wyślij zgłoszenie</button>
+    </form>
 </section>
 
-<!-- Pomysły dla Samorządu -->
 <section id="pomysly" class="hidden">
-<h2>Pomysły dla Samorządu</h2>
-<p id="pomyslyText">Masz pomysł, który może ułatwić życie w szkole lub uczynić ją ciekawszą? Wpisz go poniżej, a Samorząd Uczniowski rozważy każdą propozycję.</p>
-<form id="ideaForm">
-<label>Twoje imię i nazwisko:</label><input type="text" id="ideaName" required>
-<label>Kategoria pomysłu:</label><select id="ideaCategory">
-<option value="Wydarzenie">Wydarzenie</option>
-<option value="Inicjatywa społeczna">Inicjatywa społeczna</option>
-<option value="Usprawnienie szkolne">Usprawnienie szkolne</option>
-<option value="Inne">Inne</option>
-</select>
-<label>Opis pomysłu:</label><textarea id="ideaDescription" rows="4" required></textarea>
-<button type="button" onclick="submitIdea()">Wyślij pomysł</button>
-</form>
+    <h2>Pomysły dla Samorządu</h2>
+    <p id="pomyslyText">Masz pomysł, który może ułatwić życie w szkole lub uczynić ją ciekawszą? Wpisz go poniżej, a Samorząd Uczniowski rozważy każdą propozycję.</p>
+    <form id="ideaForm">
+        <label>Twoje imię i nazwisko:</label><input type="text" id="ideaName" required>
+        <label>Kategoria pomysłu:</label>
+        <select id="ideaCategory">
+            <option value="Wydarzenie">Wydarzenie</option>
+            <option value="Inicjatywa społeczna">Inicjatywa społeczna</option>
+            <option value="Usprawnienie szkolne">Usprawnienie szkolne</option>
+            <option value="Inne">Inne</option>
+        </select>
+        <label>Opis pomysłu:</label><textarea id="ideaDescription" rows="4" required></textarea>
+        <button type="button" onclick="submitIdea()">Wyślij pomysł</button>
+    </form>
 </section>
 
-<!-- Kontakt -->
 <section id="kontakt" class="hidden">
-<h2>Kontakt</h2>
-<p id="kontaktText">Mail: <a href="mailto:samorzadszkolnysp2muszyna@gmail.com">samorzadszkolnysp2muszyna@gmail.com</a></p>
+    <h2>Kontakt</h2>
+    <p id="kontaktText">Mail: <a href="mailto:samorzadszkolnysp2muszyna@gmail.com">samorzadszkolnysp2muszyna@gmail.com</a></p>
 </section>
 
-<!-- Panel administratora -->
 <section id="panel" class="hidden">
-<h2>Panel administratora</h2>
-<div class="login-container" id="loginDiv">
-<label>Hasło:</label><input type="password" id="password">
-<button onclick="login()">Zaloguj</button>
-<p id="loginMsg" style="color:red;"></p>
-</div>
-<div id="adminPanel" class="hidden">
-<h3>Edycja treści zakładek</h3>
-<label>Wybierz zakładkę:</label>
-<select id="tabSelector" onchange="loadTabContent()">
-<option value="homeText">Strona główna</option>
-<option value="skladText">Skład samorządu</option>
-<option value="mamtalentText">Mam Talent</option>
-<option value="pomyslyText">Pomysły</option>
-<option value="kontaktText">Kontakt</option>
-</select>
-<textarea id="tabEditor" rows="6" style="width:100%; margin-top:10px;"></textarea>
-<button onclick="saveTabContent()">Zapisz zmiany</button>
+    <h2>Panel administratora</h2>
+    <div class="login-container" id="loginDiv">
+        <label>Hasło:</label><input type="password" id="password">
+        <button onclick="login()">Zaloguj</button>
+        <p id="loginMsg" style="color:red;"></p>
+    </div>
+    <div id="adminPanel" class="hidden">
+        <h3>Edycja treści zakładek</h3>
+        <label>Wybierz zakładkę:</label>
+        <select id="tabSelector" onchange="loadTabContent()">
+            <option value="homeText">Strona główna</option>
+            <option value="skladText">Skład samorządu</option>
+            <option value="mamtalentText">Mam Talent</option>
+            <option value="pomyslyText">Pomysły</option>
+            <option value="kontaktText">Kontakt</option>
+        </select>
+        <textarea id="tabEditor" rows="6" style="width:100%; margin-top:10px;"></textarea>
+        <button onclick="saveTabContent()">Zapisz zmiany</button>
 
-<h3>Lista zgłoszeń do Mam Talent</h3>
-<table id="submissionsTable">
-<tr><th>Imię i nazwisko</th><th>Klasa</th><th>Kategoria</th><th>Opis występu</th><th>Link</th><th>Status</th><th>Akcja</th></tr>
-</table>
+        <h3>Lista zgłoszeń do Mam Talent</h3>
+        <table id="submissionsTable"><tr>
+            <th>Imię i nazwisko</th><th>Klasa</th><th>Kategoria</th><th>Opis występu</th><th>Link</th><th>Status</th><th>Akcja</th>
+        </tr></table>
 
-<h3>Dodaj aktualność</h3>
-<input type="text" id="newsTitle" placeholder="Tytuł"><br>
-<textarea id="newsContent" rows="3" placeholder="Treść"></textarea><br>
-<button onclick="addNews()">Dodaj aktualność</button>
+        <h3>Dodaj aktualność</h3>
+        <input type="text" id="newsTitle" placeholder="Tytuł"><br>
+        <textarea id="newsContent" rows="3" placeholder="Treść"></textarea><br>
+        <button onclick="addNews()">Dodaj aktualność</button>
 
-<h3>Dodaj wydarzenie</h3>
-<input type="text" id="eventTitle" placeholder="Tytuł"><br>
-<input type="date" id="eventDate"><br>
-<textarea id="eventContent" rows="3" placeholder="Opis wydarzenia"></textarea><br>
-<button onclick="addEvent()">Dodaj wydarzenie</button>
+        <h3>Dodaj wydarzenie</h3>
+        <input type="text" id="eventTitle" placeholder="Tytuł"><br>
+        <input type="date" id="eventDate"><br>
+        <textarea id="eventContent" rows="3" placeholder="Opis wydarzenia"></textarea><br>
+        <button onclick="addEvent()">Dodaj wydarzenie</button>
 
-<h3>Pomysły od uczniów</h3>
-<table id="ideasTable">
-<tr><th>Imię i nazwisko</th><th>Kategoria</th><th>Opis pomysłu</th></tr>
-</table>
-</div>
+        <h3>Pomysły od uczniów</h3>
+        <table id="ideasTable"><tr>
+            <th>Imię i nazwisko</th><th>Kategoria</th><th>Opis pomysłu</th>
+        </tr></table>
+    </div>
 </section>
 
 <script type="module">
 // Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.1/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, doc, setDoc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.6.1/firebase-firestore.js";
+import { getFirestore, collection, doc, addDoc, getDoc, getDocs, setDoc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.6.1/firebase-firestore.js";
 
 const firebaseConfig = {
-apiKey: "AIzaSyAHHRGXZF6HcvoKUE4KKqedLl2tAl5zRro",
-authDomain: "samorzadsp2-ca51a.firebaseapp.com",
-projectId: "samorzadsp2-ca51a",
-storageBucket: "samorzadsp2-ca51a.appspot.com",
-messagingSenderId: "928474288056",
-appId: "1:928474288056:web:c4b8d54c844ac9d607c94d"
+  apiKey: "AIzaSyAHHRGXZF6HcvoKUE4KKqedLl2tAl5zRro",
+  authDomain: "samorzadsp2-ca51a.firebaseapp.com",
+  projectId: "samorzadsp2-ca51a",
+  storageBucket: "samorzadsp2-ca51a.appspot.com",
+  messagingSenderId: "928474288056",
+  appId: "1:928474288056:web:c4b8d54c844ac9d607c94d"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Globalne zmienne i funkcje dostępne w window
+window.showSection = function(id) {
+    document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
+}
+
 const adminPassword = "SamorzadUczniowskiSP2haslo";
 
-// Nawigacja
-window.showSection = function(id){document.querySelectorAll('section').forEach(sec=>sec.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');}
+window.login = async function() {
+    const pass = document.getElementById("password").value;
+    if(pass===adminPassword){
+        document.getElementById("loginDiv").classList.add("hidden");
+        document.getElementById("adminPanel").classList.remove("hidden");
+        loadAllData();
+    } else {
+        document.getElementById("loginMsg").innerText="Nieprawidłowe hasło!";
+    }
+}
+
+// Funkcje Firestore dla zakładek, newsów, pomysłów i Mam Talent
+async function loadAllData() {
+    const tabs = ["homeText","skladText","mamtalentText","pomyslyText","kontaktText"];
+    for(const tab of tabs){
+        const docSnap = await getDoc(doc(db,"tabs",tab));
+        if(docSnap.exists()){
+            document.getElementById(tab).innerHTML=docSnap.data().content;
+        }
+    }
+    renderNews();
+    renderIdeas();
+    renderSubmissions();
+}
+
+window.saveTabContent = async function(){
+    const selected = document.getElementById("tabSelector").value;
+    const content = document.getElementById("tabEditor").value;
+    await setDoc(doc(db,"tabs",selected),{content});
+    document.getElementById(selected).innerHTML=content;
+    alert("Treść zakładki zaktualizowana!");
+}
+
+// Dodawanie newsów
+window.addNews = async function() {
+    const title = document.getElementById("newsTitle").value;
+    const content = document.getElementById("newsContent").value;
+    if(title && content){
+        await addDoc(collection(db,"news"),{title, content, timestamp:Date.now()});
+        document.getElementById("newsTitle").value="";
+        document.getElementById("newsContent").value="";
+        renderNews();
+    }
+}
+
+async function renderNews() {
+    const list = document.getElementById("newsList");
+    if(!list) return;
+    list.innerHTML="";
+    const q = query(collection(db,"news"), orderBy("timestamp","desc"));
+    const snapshot = await getDocs(q);
+    snapshot.forEach(docSnap=>{
+        const n = docSnap.data();
+        const div = document.createElement("div");
+        div.className="card fade-in";
+        div.innerHTML=`<h4>${n.title}</h4><p>${n.content}</p>`;
+        list.appendChild(div);
+    });
+}
+
+// Pomysły
+window.submitIdea = async function() {
+    const name = document.getElementById("ideaName").value;
+    const category = document.getElementById("ideaCategory").value;
+    const description = document.getElementById("ideaDescription").value;
+    if(name && description){
+        await addDoc(collection(db,"ideas"),{name, category, description, timestamp:Date.now()});
+        document.getElementById("ideaName").value="";
+        document.getElementById("ideaCategory").value="Wydarzenie";
+        document.getElementById("ideaDescription").value="";
+        renderIdeas();
+    }
+}
+
+async function renderIdeas() {
+    const table = document.getElementById("ideasTable");
+    if(!table) return;
+    table.innerHTML=`<tr><th>Imię i nazwisko</th><th>Kategoria</th><th>Opis pomysłu</th></tr>`;
+    const q = query(collection(db,"ideas"), orderBy("timestamp","desc"));
+    const snapshot = await getDocs(q);
+    snapshot.forEach(docSnap=>{
+        const i = docSnap.data();
+        const row = table.insertRow();
+        row.insertCell(0).innerText=i.name;
+        row.insertCell(1).innerText=i.category;
+        row.insertCell(2).innerText=i.description;
+    });
+}
 
 // Mam Talent
-window.submitForm = async function(){
-const startDate = new Date("2026-02-16"); if(new Date()<startDate){alert("Zapisy rozpoczną się 16.02.2026."); return;}
-const imie=document.getElementById("imie").value;
-const klasa=document.getElementById("klasa").value;
-const kategoria=document.getElementById("kategoria").value;
-const opis=document.getElementById("opis").value;
-const link=document.getElementById("link").value;
-await addDoc(collection(db,"submissions"),{imie,klasa,kategoria,opis,link,status:"oczekuje",timestamp:Date.now()});
-document.getElementById("form").reset();
-renderSubmissions();
+window.submitForm = async function() {
+    const startDate = new Date("2026-02-16");
+    if(new Date()<startDate){ alert("Zapisy rozpoczną się 16.02.2026."); return; }
+
+    const imie=document.getElementById("imie").value;
+    const klasa=document.getElementById("klasa").value;
+    const kategoria=document.getElementById("kategoria").value;
+    const opis=document.getElementById("opis").value;
+    const link=document.getElementById("link").value;
+
+    await addDoc(collection(db,"submissions"),{imie,klasa,kategoria,opis,link,status:"oczekuje"});
+    document.getElementById("form").reset();
+    renderSubmissions();
 }
 
-// Pomysły
-window.submitIdea = async function(){
-const name=document.getElementById("ideaName").value;
-const category=document.getElementById("ideaCategory").value;
-const description=document.getElementById("ideaDescription").value;
-if(name && description){
-await addDoc(collection(db,"ideas"),{name,category,description,timestamp:Date.now()});
-document.getElementById("ideaForm").reset();
-renderIdeas();
-}
-}
-
-// Panel admin
-window.login = async function(){
-const pass=document.getElementById("password").value;
-if(pass===adminPassword){
-document.getElementById("loginDiv").classList.add("hidden");
-document.getElementById("adminPanel").classList.remove("hidden");
-loadAllData();
-} else {document.getElementById("loginMsg").innerText="Nieprawidłowe hasło!";}
-}
-
-async function loadAllData(){
-await renderSubmissions();
-await renderIdeas();
-await renderNews();
-await renderEvents();
-}
-
-// Render
 async function renderSubmissions(){
-const table=document.getElementById("submissionsTable"); if(!table) return;
-table.innerHTML=`<tr><th>Imię i nazwisko</th><th>Klasa</th><th>Kategoria</th><th>Opis występu</th><th>Link</th><th>Status</th><th>Akcja</th></tr>`;
-const snapshot=await getDocs(collection(db,"submissions"));
-snapshot.forEach(docSnap=>{
-const s=docSnap.data();
-const row=table.insertRow();
-row.insertCell(0).innerText=s.imie;
-row.insertCell(1).innerText=s.klasa;
-row.insertCell(2).innerText=s.kategoria;
-row.insertCell(3).innerText=s.opis;
-row.insertCell(4).innerHTML=s.link?`<a href="${s.link}" target="_blank">link</a>`:"";
-row.insertCell(5).innerText=s.status;
-row.insertCell(6).innerHTML=`<button onclick="changeStatus('${docSnap.id}','zaakceptowany')">Zaakceptuj</button>
-<button onclick="changeStatus('${docSnap.id}','odrzucony')">Odrzuć</button>`;
-});
+    const table = document.getElementById("submissionsTable");
+    if(!table) return;
+    table.innerHTML=`<tr><th>Imię i nazwisko</th><th>Klasa</th><th>Kategoria</th><th>Opis występu</th><th>Link</th><th>Status</th><th>Akcja</th></tr>`;
+    const snapshot = await getDocs(collection(db,"submissions"));
+    snapshot.forEach(docSnap=>{
+        const s = docSnap.data();
+        const row = table.insertRow();
+        row.insertCell(0).innerText=s.imie;
+        row.insertCell(1).innerText=s.klasa;
+        row.insertCell(2).innerText=s.kategoria;
+        row.insertCell(3).innerText=s.opis;
+        row.insertCell(4).innerHTML=s.link?`<a href="${s.link}" target="_blank">link</a>`:"";
+        row.insertCell(5).innerText=s.status;
+        row.insertCell(6).innerHTML=`<button onclick="changeStatus('${docSnap.id}','zaakceptowany')">Zaakceptuj</button>
+                                     <button onclick="changeStatus('${docSnap.id}','odrzucony')">Odrzuć</button>`;
+    });
 }
 
-window.changeStatus = async function(id,status){await updateDoc(doc(db,"submissions",id),{status}); renderSubmissions();}
-
-// Aktualności
-window.addNews = async function(){
-const title=document.getElementById("newsTitle").value;
-const content=document.getElementById("newsContent").value;
-if(title && content){await addDoc(collection(db,"news"),{title,content,timestamp:Date.now()}); document.getElementById("newsTitle").value=""; document.getElementById("newsContent").value=""; renderNews();}
-}
-async function renderNews(){
-const list=document.getElementById("newsList"); if(!list) return;
-list.innerHTML=""; const q=query(collection(db,"news"),orderBy("timestamp","desc")); const snapshot=await getDocs(q);
-snapshot.forEach(docSnap=>{const n=docSnap.data(); const div=document.createElement("div"); div.className="card fade-in"; div.innerHTML=`<h4>${n.title}</h4><p>${n.content}</p>`; list.appendChild(div);});
+window.changeStatus = async function(id,status){
+    await updateDoc(doc(db,"submissions",id),{status});
+    renderSubmissions();
 }
 
-// Pomysły
-async function renderIdeas(){
-const list=document.getElementById("ideasTable"); if(!list) return;
-list.innerHTML=`<tr><th>Imię i nazwisko</th><th>Kategoria</th><th>Opis pomysłu</th></tr>`;
-const snapshot=await getDocs(query(collection(db,"ideas"),orderBy("timestamp","desc")));
-snapshot.forEach(docSnap=>{const i=docSnap.data(); const row=list.insertRow(); row.insertCell(0).innerText=i.name; row.insertCell(1).innerText=i.category; row.insertCell(2).innerText=i.description;});
+// Edycja treści zakładek
+window.loadTabContent = function(){
+    const selected = document.getElementById("tabSelector").value;
+    document.getElementById("tabEditor").value = document.getElementById(selected).innerHTML;
 }
-
-// Wydarzenia
-window.addEventListener("load", async()=>{await renderEvents();});
-async function renderEvents(){const list=document.getElementById("eventList"); if(!list) return; list.innerHTML="";}
 </script>
+
 </body>
 </html>
